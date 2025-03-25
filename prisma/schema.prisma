@@ -1,0 +1,63 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model attachments {
+  id          Int       @id @default(autoincrement())
+  ticket_id   Int?
+  file_name   String    @db.VarChar(255)
+  file_path   String
+  uploaded_at DateTime? @default(now()) @db.Timestamp(6)
+  tickets     tickets?  @relation(fields: [ticket_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model categories {
+  id          Int       @id @default(autoincrement())
+  name        String    @unique @db.VarChar(50)
+  description String?
+  tickets     tickets[]
+}
+
+model ticket_responses {
+  id         Int       @id @default(autoincrement())
+  ticket_id  Int?
+  user_id    Int?
+  message    String
+  created_at DateTime? @default(now()) @db.Timestamp(6)
+  tickets    tickets?  @relation(fields: [ticket_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  users      users?    @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model tickets {
+  id               Int                @id @default(autoincrement())
+  user_id          Int?
+  category_id      Int?
+  subject          String             @db.VarChar(255)
+  description      String
+  status           String?            @default("open") @db.VarChar(20)
+  priority         String?            @default("medium") @db.VarChar(20)
+  created_at       DateTime?          @default(now()) @db.Timestamp(6)
+  updated_at       DateTime?          @default(now()) @db.Timestamp(6)
+  attachments      attachments[]
+  ticket_responses ticket_responses[]
+  categories       categories?        @relation(fields: [category_id], references: [id], onUpdate: NoAction)
+  users            users?             @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model users {
+  id               Int                @id @default(autoincrement())
+  name             String             @db.VarChar(100)
+  email            String             @unique @db.VarChar(100)
+  password_hash    String
+  role             String?            @default("user") @db.VarChar(20)
+  created_at       DateTime?          @default(now()) @db.Timestamp(6)
+  ticket_responses ticket_responses[]
+  tickets          tickets[]
+}

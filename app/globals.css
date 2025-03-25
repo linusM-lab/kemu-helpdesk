@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+  --primary: 346 100% 24%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 222 65% 33%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --accent: 191 100% 39%;
+  --accent-foreground: 222.2 47.4% 11.2%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 222.2 84% 4.9%;
+  --radius: 0.5rem;
+}
+
+/* Base styles */
+body {
+  background-color: #f8f9fa;
+  color: #000000;
+}
+
+/* Force text colors for specific elements */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #000000;
+}
+
+p,
+span,
+div,
+li {
+  color: #333333;
+}
+
+/* Override for specific backgrounds */
+.bg-kemu-maroon h1,
+.bg-kemu-maroon h2,
+.bg-kemu-maroon h3,
+.bg-kemu-maroon p,
+.bg-kemu-maroon span,
+.bg-kemu-maroon div,
+.bg-kemu-maroon li {
+  color: #ffffff;
+}
+
+.bg-kemu-blue h1,
+.bg-kemu-blue h2,
+.bg-kemu-blue h3,
+.bg-kemu-blue p,
+.bg-kemu-blue span,
+.bg-kemu-blue div,
+.bg-kemu-blue li {
+  color: #ffffff;
+}
+
+/* Card styles */
+.card {
+  background-color: #ffffff;
+}
+
+.card-title {
+  color: #000000;
+}
+
+.card-description {
+  color: #555555;
+}
+
+/* Color definitions */
+.bg-kemu-maroon {
+  background-color: #7b0046;
+}
+
+.text-kemu-maroon {
+  color: #7b0046;
+}
+
+.bg-kemu-blue {
+  background-color: #1e3a8a;
+}
+
+.text-kemu-blue {
+  color: #1e3a8a;
+}
+
+.bg-white {
+  background-color: #ffffff;
+}
+
+.text-white {
+  color: #ffffff;
+}
+
+.text-black {
+  color: #000000;
+}
+
+/* Form elements */
+input,
+select,
+textarea {
+  color: #000000;
+  background-color: #ffffff;
+}
+
+/* Links */
+a {
+  color: #7b0046;
+}
+
+a.text-white {
+  color: #ffffff;
+}
+
+/* Dropdown menu */
+.dropdown-menu-content * {
+  color: #000000;
+}
+
